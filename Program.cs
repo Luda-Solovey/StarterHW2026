@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text;
 
 namespace _1Variables
 {
@@ -6,6 +7,7 @@ namespace _1Variables
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             //НОТАТОК
             //Типи даних в C#, розмірність в байтах, позначення літералів
             //byte 1 B
@@ -36,9 +38,9 @@ namespace _1Variables
             Console.WriteLine(temperatureOfBody);
 
             //3-Створити змінну для збереження теператури повітря в цельсіях
-            float temperatureOfAir = default;
+            sbyte temperatureOfAir = default;
             Console.WriteLine(temperatureOfAir);
-            temperatureOfAir = -273.15f; //absolute zero
+            temperatureOfAir = -21;
             Console.WriteLine(temperatureOfAir);
 
             //4-створити змінну яка буде зберігати максимально точне значення PI 
@@ -57,11 +59,11 @@ namespace _1Variables
             Console.WriteLine("Введіть нове значення для ціни товару");
             string input = Console.ReadLine();
 
-            double newPreiceOfProduct;
+            decimal newPreiceOfProduct;
 
-            if (Double.TryParse(input, CultureInfo.InvariantCulture, out newPreiceOfProduct))
+            if (Decimal.TryParse(input, CultureInfo.InvariantCulture, out newPreiceOfProduct))
             {
-                Console.WriteLine($"Нова ціна - {newPreiceOfProduct}");
+                Console.WriteLine($"Нова ціна - {newPreiceOfProduct} грн.");
             }
             else
             {
