@@ -49,9 +49,9 @@ namespace _1Variables
             piValue = 3.1415926535897932384626433833m;
 
             //5-Створити змінну яка буде ззберігати ціну товару
-            decimal priceOfProduct = default;
+            double priceOfProduct = default;
             Console.WriteLine(priceOfProduct);
-            priceOfProduct = 19.99m;
+            priceOfProduct = 19.99d;
 
             Console.WriteLine("-------------------------------------");
 
@@ -59,9 +59,9 @@ namespace _1Variables
             Console.WriteLine("Введіть нове значення для ціни товару");
             string input = Console.ReadLine();
 
-            decimal newPreiceOfProduct;
+            double newPreiceOfProduct;
 
-            if (Decimal.TryParse(input, CultureInfo.InvariantCulture, out newPreiceOfProduct))
+            if (Double.TryParse(input, CultureInfo.InvariantCulture, out newPreiceOfProduct))
             {
                 Console.WriteLine($"Нова ціна - {newPreiceOfProduct} грн.");
             }
