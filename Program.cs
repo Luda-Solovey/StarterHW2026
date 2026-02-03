@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text;
 
 namespace _1Variables
 {
@@ -22,6 +23,9 @@ namespace _1Variables
 
             //найменша одиниця пам'яті, яку можна виділити - це 1 байт (8 біт)
             //зберігаються в оперативній пам'яті комп'ютера (RAM)
+
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.UTF8;
 
             //1-створити змінну для зберігання віку людини і присвоїти
             byte ageOfMan = default; // 0 to 255
