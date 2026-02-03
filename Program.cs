@@ -77,24 +77,7 @@ namespace _1Variables
             int totalMemory = sizeof(byte) + 2*(sizeof(float)) + 2*(sizeof(decimal)) + sizeof(decimal);
             Console.WriteLine($"Витрачено пам'яті під зміні (без стрінги) - {totalMemory}");
 
-            //Питання
-            //char c = '\00E7'; // Значення у форматі unicode
-            //як порахувати розмір виділеної пам'яті для змінної типу string, класу, структури
-            //різниця між double, decimal
-
-            //Типи даних в C#, розмірність в байтах, позначення літералів
-            // byte 1 B
-            // short 2 B
-            //int 4 B
-            //long 8 B
-
-            //float 4 B, f
-            //double 8 B, d всі типи з крапкою сприймаються як double за замовчуванням
-            //decimal 16 B, m
-
-            //bool 1 B
-            //char 2 B
-
+            
 
         }
     }
