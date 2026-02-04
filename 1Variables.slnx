@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="../2 GipotenuseOfTheTriangle/2 GipotenuseOfTheTriangle.csproj" Id="d7230c32-a6e3-453c-964f-3c739cc2511e" />
-  <Project Path="1Variables.csproj" />
+  <Project Path="1 Variables/1-Variables.csproj" />
+  <Project Path="2 GipotenuseOfTheTriangle/2-GipotenuseOfTheTriangle.csproj" />
 </Solution>
