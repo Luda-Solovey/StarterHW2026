@@ -7,6 +7,7 @@ namespace _1Variables
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             //НОТАТОК
             //Типи даних в C#, розмірність в байтах, позначення літералів
             //byte 1 B
@@ -40,9 +41,9 @@ namespace _1Variables
             Console.WriteLine(temperatureOfBody);
 
             //3-Створити змінну для збереження теператури повітря в цельсіях
-            float temperatureOfAir = default;
+            sbyte temperatureOfAir = default;
             Console.WriteLine(temperatureOfAir);
-            temperatureOfAir = -273.15f; //absolute zero
+            temperatureOfAir = -21;
             Console.WriteLine(temperatureOfAir);
 
             //4-створити змінну яка буде зберігати максимально точне значення PI 
@@ -51,9 +52,9 @@ namespace _1Variables
             piValue = 3.1415926535897932384626433833m;
 
             //5-Створити змінну яка буде ззберігати ціну товару
-            decimal priceOfProduct = default;
+            double priceOfProduct = default;
             Console.WriteLine(priceOfProduct);
-            priceOfProduct = 19.99m;
+            priceOfProduct = 19.99d;
 
             Console.WriteLine("-------------------------------------");
 
@@ -65,7 +66,7 @@ namespace _1Variables
 
             if (Double.TryParse(input, CultureInfo.InvariantCulture, out newPreiceOfProduct))
             {
-                Console.WriteLine($"Нова ціна - {newPreiceOfProduct}");
+                Console.WriteLine($"Нова ціна - {newPreiceOfProduct:C}");
             }
             else
             {
@@ -76,27 +77,10 @@ namespace _1Variables
             Console.WriteLine("-------------------------------------");
 
             //Підрахувати і вивести скільки ви таким чином витратила пам'яті на всі ці змінні.
-            int totalMemory = sizeof(byte) + 2*(sizeof(float)) + 2*(sizeof(decimal)) + sizeof(decimal);
+            int totalMemory = sizeof(byte) + 2 * (sizeof(float)) + 2 * (sizeof(decimal)) + sizeof(decimal);
             Console.WriteLine($"Витрачено пам'яті під зміні (без стрінги) - {totalMemory}");
 
-            //Питання
-            //char c = '\00E7'; // Значення у форматі unicode
-            //як порахувати розмір виділеної пам'яті для змінної типу string, класу, структури
-            //різниця між double, decimal
-
-            //Типи даних в C#, розмірність в байтах, позначення літералів
-            // byte 1 B
-            // short 2 B
-            //int 4 B
-            //long 8 B
-
-            //float 4 B, f
-            //double 8 B, d всі типи з крапкою сприймаються як double за замовчуванням
-            //decimal 16 B, m
-
-            //bool 1 B
-            //char 2 B
-
+            
 
         }
     }
