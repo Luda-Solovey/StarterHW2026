@@ -77,7 +77,7 @@ namespace _1Variables
             Console.WriteLine("-------------------------------------");
 
             //Підрахувати і вивести скільки ви таким чином витратила пам'яті на всі ці змінні.
-            int totalMemory = sizeof(byte) + 2*(sizeof(float)) + 2*(sizeof(decimal)) + sizeof(decimal);
+            int totalMemory = sizeof(byte) + 2 * (sizeof(float)) + 2 * (sizeof(decimal)) + sizeof(decimal);
             Console.WriteLine($"Витрачено пам'яті під зміні (без стрінги) - {totalMemory}");
 
             
