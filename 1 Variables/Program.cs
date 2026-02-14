@@ -66,7 +66,7 @@ namespace _1Variables
 
             if (Double.TryParse(input, CultureInfo.InvariantCulture, out newPreiceOfProduct))
             {
-                Console.WriteLine($"Нова ціна - {newPreiceOfProduct} грн.");
+                Console.WriteLine($"Нова ціна - {newPreiceOfProduct:C}");
             }
             else
             {
