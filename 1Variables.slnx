@@ -2,4 +2,5 @@
   <Project Path="1 Variables/1-Variables.csproj" />
   <Project Path="2 GipotenuseOfTheTriangle/2-GipotenuseOfTheTriangle.csproj" />
   <Project Path="ConditionalConstructionsDiscount/ConditionalConstructionsDiscount.csproj" Id="346e9304-1303-4e20-9324-95b94736b826" />
+  <Project Path="ConditionalConstructionsDiscountIfElse/ConditionalConstructionsDiscountIfElse.csproj" Id="03b1e605-3a7a-443d-90e5-ce30987b08fd" />
 </Solution>
