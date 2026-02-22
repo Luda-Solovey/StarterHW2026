@@ -1,6 +1,8 @@
 <Solution>
   <Project Path="1 Variables/1-Variables.csproj" />
   <Project Path="2 GipotenuseOfTheTriangle/2-GipotenuseOfTheTriangle.csproj" />
+  <Project Path="5 Calculator/5 Calculator.csproj" Id="cf6c7469-6d16-41e7-8e8a-b1081aa1763c" />
+  <Project Path="5 CalculatorDecimal/5 CalculatorDecimal.csproj" Id="a3cbce7f-0c5f-4cfe-906a-af5097a05e0c" />
   <Project Path="ConditionalConstructionsDiscount/ConditionalConstructionsDiscount.csproj" Id="346e9304-1303-4e20-9324-95b94736b826" />
   <Project Path="ConditionalConstructionsDiscountIfElse/ConditionalConstructionsDiscountIfElse.csproj" Id="03b1e605-3a7a-443d-90e5-ce30987b08fd" />
 </Solution>
