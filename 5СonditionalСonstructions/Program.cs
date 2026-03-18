@@ -33,37 +33,40 @@ namespace _5СonditionalСonstructions
             //while (isBad)
 
             decimal salary = 0;
-            float experience;
-            string haveGoodFeedbacksInput = string.Empty;
+            float experience = 0;
+            string haveGoodFeedbacks = string.Empty;
             bool isExpirienceParced = false;
             bool isSalaryParced = false;
             bool isWrongInput = false;
-            bool wishesGoOut = false;
+            bool isExitRequired = false;
 
             while (true)
             {
                 do
                 {
                     isWrongInput = false;
-                    Console.WriteLine("Введіть стаж роботи:");
-                    string? inputExperience = Console.ReadLine();
+                    Console.WriteLine("Введіть стаж роботи або exit, якщо бажаєте вийти з програми");
+                    string? inputExperience = Console.ReadLine() ?? string.Empty;
+                    if (inputExperience.ToUpper() == "EXIT")
+                    {
+                        isExitRequired = true;
+                        break;
+                    }
                     string normalizedExpirience = (inputExperience ?? string.Empty).Replace(',', '.');//замінюємо кому на крапку
                     isExpirienceParced = float.TryParse(normalizedExpirience, CultureInfo.InvariantCulture, out experience);
-                    if (isExpirienceParced)
+
+                    if (!isExpirienceParced || experience < 0)
                     {
-                        if (experience < 0)
-                        {
-                            Console.WriteLine("Стаж роботи не може бути від'ємним числом.");
-                            isWrongInput = true;
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ви ввели невалідне значення для стажу роботи.");
+                        Console.WriteLine("Невалідне значення для стажу роботи.");
                         isWrongInput = true;
                     }
                 }
                 while (isWrongInput);
+
+                if (isExitRequired == true)
+                {
+                    break;
+                }
 
                 do
                 {
@@ -72,79 +75,71 @@ namespace _5СonditionalСonstructions
                     string? inputSalary = Console.ReadLine();
                     if (inputSalary == "exit")
                     {
-                        wishesGoOut = true;
+                        isExitRequired = true;
                         break;
                     }
 
                     string normalizedSalary = (inputSalary ?? string.Empty).Replace(',', '.');
                     isSalaryParced = Decimal.TryParse(normalizedSalary, CultureInfo.InvariantCulture, out salary);
-                    if (isSalaryParced)
+                    if (!isSalaryParced || salary < 0)
                     {
-                        if (salary < 0)
-                        {
-                            Console.WriteLine("Зарплата не може мати від'ємне значення.");
-                            isWrongInput = true;
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Введене невалідне значення для заробітньої плати.");
+                        Console.WriteLine("Введене невалідне значення заробітньої плати.");
                         isWrongInput = true;
                     }
                 }
-
                 while (isWrongInput);
 
-                    if (wishesGoOut)
-                    {
-                        Console.WriteLine("Вихід з програми");
-                        break;
-                    }
+                if (isExitRequired)
+                {
+                    Console.WriteLine("Вихід з програми");
+                    break;
+                }
 
-                    do
-                    {
+                do
+                {
                     isWrongInput = false;
-                    Console.WriteLine("Ви маєте гарні відгуки? Напишіть Так чи Ні. Або exit, якщо бажаєте вийти з програми");
-                        haveGoodFeedbacksInput = Console.ReadLine() ?? string.Empty;
-                        if (haveGoodFeedbacksInput.ToUpper() == "EXIT")
-                        {
-                            wishesGoOut = true;
-                            break;
-                        }
-
-                        if (!(haveGoodFeedbacksInput.ToUpper() == "ТАК" || haveGoodFeedbacksInput.ToUpper() == "НІ"))
-                        {
-                            Console.WriteLine("Ви ввели неправильне значення.");
-                            isWrongInput = true;
-                        }
-                    }
-                    while (isWrongInput);
-
-                    if (wishesGoOut) {
-                        Console.WriteLine("Вихід з програми");
+                    Console.WriteLine("Ви маєте гарні відгуки? Введіть Так чи Ні. Якщо бажаєте вийти з програми введіть exit");
+                    haveGoodFeedbacks = Console.ReadLine() ?? string.Empty;
+                    if (haveGoodFeedbacks.ToUpper() == "EXIT")
+                    {
+                        isExitRequired = true;
                         break;
                     }
 
-                    if ((haveGoodFeedbacksInput == "ТАК" && salary < 10_000) || experience > 10 || salary < 5000)
+                    if (!(haveGoodFeedbacks.ToUpper() == "ТАК" || haveGoodFeedbacks.ToUpper() == "НІ"))
                     {
-                        salary += salary * 0.2m;
-                        Console.WriteLine($"Вітаємо! Ваша заробітня плата була збільшена на 20%. Нова заробітня плата - {salary:##.##}");
-                        //Console.WriteLine("Вітаємо! Ваша заробітня плата була збільшена на 20%. Нова заробітня плата -" + salary.ToString("C"));
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Ви не відповідаєте умовам для підвищення зарплати. Ваша заробітня плата - {salary:##.##}");
-                    }
-
-                    Console.WriteLine("Якщо бажаєте вийти з програми натисніть Esc, інакше - будь яку іншу клавішу");
-                    var key = Console.ReadKey(true);
-                    if (key.Key == ConsoleKey.Escape)
-                    {
-                        Console.WriteLine("Вихід з програми");
-                        break;
+                        Console.WriteLine("Ви ввели неправильне значення.");
+                        isWrongInput = true;
                     }
                 }
+                while (isWrongInput);
+
+                if (isExitRequired)
+                {
+                    Console.WriteLine("Вихід з програми");
+                    break;
+                }
+
+                if ((haveGoodFeedbacks == "ТАК" && salary < 10_000m) || experience > 10f || salary < 5000m)
+                {
+                    salary += salary * 0.2m;
+                    Console.WriteLine($"Вітаємо! Ваша заробітня плата була збільшена на 20%. Нова заробітня плата - {salary:##.##}");
+                    //Console.WriteLine("Вітаємо! Ваша заробітня плата була збільшена на 20%. Нова заробітня плата -" + salary.ToString("C"));
+                }
+                else
+                {
+                    Console.WriteLine($"На жаль, Ви не відповідаєте умовам для підвищення зарплати.");
+                }
+
             }
+            while (isWrongInput) ;
         }
-    } 
+    }
+}
+
+
+
+
+
+
 
