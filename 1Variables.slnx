@@ -4,7 +4,7 @@
   <Project Path="5 Calculator/5 Calculator.csproj" Id="cf6c7469-6d16-41e7-8e8a-b1081aa1763c" />
   <Project Path="5 CalculatorDecimal/5 CalculatorDecimal.csproj" Id="a3cbce7f-0c5f-4cfe-906a-af5097a05e0c" />
   <Project Path="5СonditionalСonstructions/5СonditionalСonstructions.csproj" Id="bdda9f7f-c8d4-4ae3-8731-d5827f2e7087" />
+  <Project Path="6 ForInFor_MultiplicationTable/6 ForInFor_MultiplicationTable.csproj" Id="d2c4f8d4-0fc7-4fb2-8dce-9b68dd70ed3b" />
   <Project Path="ConditionalConstructionsDiscount/ConditionalConstructionsDiscount.csproj" Id="346e9304-1303-4e20-9324-95b94736b826" />
   <Project Path="ConditionalConstructionsDiscountIfElse/ConditionalConstructionsDiscountIfElse.csproj" Id="03b1e605-3a7a-443d-90e5-ce30987b08fd" />
-  <Project Path="Test2/Test2.csproj" Id="425e04c4-4fac-4dae-875a-f29ea07f0a3d" />
 </Solution>
