@@ -1,0 +1,81 @@
+﻿using System.Text;
+
+namespace DepositFinalHomeWork
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.UTF8;
+
+            Deposit deposit1 = new Deposit();
+
+            //введення суми депозиту
+            Console.WriteLine("Введіть суму депозита");
+
+            string inputDepositSum = Console.ReadLine() ?? string.Empty;
+
+            string normalizedInput = inputDepositSum.Replace(',', '.');
+
+            bool isInputParsed = double.TryParse(normalizedInput, out double depositSum);
+
+            if (isInputParsed && depositSum > 0)
+            {
+                deposit1.DepositSum = depositSum;
+            }
+            else
+            {
+                Console.WriteLine("Некоректне введення суми депозиту. Будь ласка, введіть додатне число.");
+                return;
+            }
+
+
+            //дата відкриття депозиту
+            Console.WriteLine("Введіть дату відкриття депозиту у форматі ДД.ММ.РРРР");
+
+            string inputDepositOpenDate = Console.ReadLine() ?? string.Empty;
+
+            string normalizedDateInput = inputDepositOpenDate.Replace(',', '.');
+
+            bool isDateParsed = DateOnly.TryParse(normalizedDateInput, out DateOnly depositOpenDate);
+
+            if (isDateParsed)
+            {
+                deposit1.DepositOpenDate = depositOpenDate;
+            }
+            else
+            {
+                Console.WriteLine("Некоректне введення дати відкриття депозиту. Будь ласка, введіть дату у форматі ДД.ММ.РРРР.");
+                return;
+            }
+
+
+            //тривалість депозиту в місяцях
+            Console.WriteLine("Вкажіть кількість місяців, на яку бажаєте відкрит депозит. Мінімальний термін - 4 місяці");
+
+            string inputDepositDurationInMonths = Console.ReadLine() ?? string.Empty;
+
+            string normalizedDurationInput = inputDepositDurationInMonths.Replace(',', '.');
+
+            bool isDurationParsed = int.TryParse(normalizedDurationInput, out int depositDurationInMonths);
+
+            if (isDurationParsed && depositDurationInMonths >= 4)
+            {
+                deposit1.DurationInMonths = depositDurationInMonths;
+                deposit1.DurationInYears = depositDurationInMonths;
+            }
+            else
+            {
+                Console.WriteLine("Некоректне введення тривалості депозиту. Будь ласка, введіть ціле число, не менше 4.");
+                return;
+            }
+
+            double profit1 = deposit1.CalculateDepositProfit(deposit1.DepositSum, deposit1.DurationInYears);
+
+            Console.WriteLine($"Розмір прибутку від депозиту - {profit1}");
+
+        }
+
+    }
+}
