@@ -7,36 +7,84 @@ namespace DepositFinalHomeWork
     public class Deposit
     {
         private int durationInYears;
-        public double DepositSum { get; set; }
-        public DateOnly DepositOpenDate { get; set; }
+
+        const int depositRate = 12;
+
+        const int increaseForMonth = 1;
+        public double InitialAmount { get; set; }
+        public DateOnly OpenDate { get; set; }
+
+        public double ProfitForMonth { get; set; }
 
         public int DurationInMonths { get; set; } = 4;
+
+        public string BillingMonth {  get; set; } = string.Empty;
+
+        public double BillingDepositSum { get; set; }   
 
         public int DurationInYears
         {
             get
             { return durationInYears; }
-            set 
+            set
             { durationInYears = DurationInMonths / 12; }
         }
 
 
 
-        public double CalculateDepositProfit(double depositSum, int years)
+        public Deposit[] CalculateDepositProfit(double depositSum, int years, int month)
         {
-            double profit = 0;
+            var depositResults = new Deposit[month];
 
-             return profit = depositSum * (1 + 0.15 * years);
-            //if (years <= 1)
-            //{
-            //    profit = depositSum * ( 1 + 0.15 * years);
-            //}
-            //else 
-            //{
-            //    profit = DepositSum * 0.20;
-            //}
-            //return profit;
-        
+            for (int i = 0; i < month; i++)
+            {
+                string monthName = OpenDate.AddMonths(i + 1).ToString("MMMM"); // Назва місяця
+                double profit = depositSum * depositRate /100/ 12; // прибуток за місяц
+                double total = depositSum + profit; // нова загальна сума
+
+                depositResults[i] = new Deposit
+                {
+                    BillingMonth = monthName,
+                    ProfitForMonth = Math.Round(profit, 2),
+                    BillingDepositSum = Math.Round(total, 2)
+                };
+
+                depositSum = total;
+            }
+            return depositResults;
         }
+
+   //     public List<DepositRow> CalculateDeposit(
+   //decimal principal,    // початкова сума
+   //decimal annualRate,   // річна ставка у %
+   //int months,           // кількість місяців
+   //DateTime startDate)   // стартовий місяць
+   //     {
+   //         var result = new List<DepositRow>();
+
+   //         decimal monthlyRate = annualRate / 100 / 12;   // ставка на місяць
+   //         decimal currentAmount = principal;
+
+   //         for (int i = 0; i < months; i++)
+   //         {
+   //             string monthName = startDate.AddMonths(i).ToString("MMMM"); // Назва місяця
+
+   //             decimal profit = currentAmount * monthlyRate;  // прибуток за місяць
+   //             decimal total = currentAmount + profit;        // нова загальна сума
+
+   //             // Додаємо рядок у таблицю
+   //             result.Add(new DepositRow
+   //             {
+   //                 Month = monthName,
+   //                 Profit = Math.Round(profit, 2),
+   //                 TotalAmount = Math.Round(total, 2)
+   //             });
+
+   //             currentAmount = total; // капіталізація
+   //         }
+
+   //         return result;
+   //     }
+
     }
 }

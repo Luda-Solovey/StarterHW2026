@@ -22,7 +22,7 @@ namespace DepositFinalHomeWork
 
             if (isInputParsed && depositSum > 0)
             {
-                deposit1.DepositSum = depositSum;
+                deposit1.InitialAmount = depositSum;
             }
             else
             {
@@ -42,7 +42,7 @@ namespace DepositFinalHomeWork
 
             if (isDateParsed)
             {
-                deposit1.DepositOpenDate = depositOpenDate;
+                deposit1.OpenDate = depositOpenDate;
             }
             else
             {
@@ -71,11 +71,24 @@ namespace DepositFinalHomeWork
                 return;
             }
 
-            double profit1 = deposit1.CalculateDepositProfit(deposit1.DepositSum, deposit1.DurationInYears);
 
-            Console.WriteLine($"Розмір прибутку від депозиту - {profit1}");
+            //розрахунок прибутку від депозиту
+            Deposit[] profit1 = deposit1.CalculateDepositProfit(deposit1.InitialAmount, deposit1.DurationInYears, deposit1.DurationInMonths);
 
+            //виведення результату
+            DisplayDepositProfit(profit1);
+
+
+            static void DisplayDepositProfit(Deposit[] profit)
+            {
+                Console.WriteLine($"{"Month", -10} {"Profit", -10} {"DepositSum", -10}");
+                Console.WriteLine(new string ('-', 50));
+                foreach (var item in profit)
+                {
+                    Console.WriteLine($"{item.BillingMonth} {item.ProfitForMonth} {item.BillingDepositSum}");
+                    Console.WriteLine(new string('-', 50));
+                }
+            }
         }
-
     }
 }
