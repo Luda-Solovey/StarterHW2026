@@ -81,11 +81,11 @@ namespace DepositFinalHomeWork
 
             static void DisplayDepositProfit(Deposit[] profit)
             {
-                Console.WriteLine($"{"Month", -10} {"Profit", -10} {"DepositSum", -10}");
+                Console.WriteLine($"{"№", -10} {"Month", -10} {"Year", -10} {"Profit", -10} {"DepositSum", -10}");
                 Console.WriteLine(new string ('-', 50));
                 foreach (var item in profit)
                 {
-                    Console.WriteLine($"{item.BillingMonth} {item.ProfitForMonth} {item.BillingDepositSum}");
+                    Console.WriteLine($"{item.NumberOfMonths} {item.BillingMonth} {item.Year} {item.ProfitForMonth} {item.BillingDepositSum}");
                     Console.WriteLine(new string('-', 50));
                 }
             }

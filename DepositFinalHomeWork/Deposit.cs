@@ -11,6 +11,10 @@ namespace DepositFinalHomeWork
         const int depositRate = 12;
 
         const int increaseForMonth = 1;
+
+        public int NumberOfMonths { get; set; }
+
+        public int Year { get; set; }
         public double InitialAmount { get; set; }
         public DateOnly OpenDate { get; set; }
 
@@ -44,7 +48,9 @@ namespace DepositFinalHomeWork
 
                 depositResults[i] = new Deposit
                 {
+                    NumberOfMonths = i + 1,
                     BillingMonth = monthName,
+                    Year = OpenDate.Year,
                     ProfitForMonth = Math.Round(profit, 2),
                     BillingDepositSum = Math.Round(total, 2)
                 };
