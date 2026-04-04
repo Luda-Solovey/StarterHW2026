@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DepositFinalHomeWork
 {
-    public class Deposit
+    public class DepositCalculator
     {
         private int durationInYears;
 
@@ -36,9 +36,9 @@ namespace DepositFinalHomeWork
 
 
 
-        public Deposit[] CalculateDepositProfit(double depositSum, int years, int month)
+        public DepositCalculator[] CalculateDepositProfit(double depositSum, int years, int month)
         {
-            var depositResults = new Deposit[month];
+            var depositResults = new DepositCalculator[month];
 
             for (int i = 0; i < month; i++)
             {
@@ -46,7 +46,7 @@ namespace DepositFinalHomeWork
                 double profit = depositSum * depositRate /100/ 12; // прибуток за місяц
                 double total = depositSum + profit; // нова загальна сума
 
-                depositResults[i] = new Deposit
+                depositResults[i] = new DepositCalculator
                 {
                     NumberOfMonths = i + 1,
                     BillingMonth = monthName,

@@ -9,7 +9,7 @@ namespace DepositFinalHomeWork
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
 
-            Deposit deposit1 = new Deposit();
+            DepositCalculator deposit1 = new DepositCalculator();
 
             //введення суми депозиту
             Console.WriteLine("Введіть суму депозита");
@@ -73,13 +73,13 @@ namespace DepositFinalHomeWork
 
 
             //розрахунок прибутку від депозиту
-            Deposit[] profit1 = deposit1.CalculateDepositProfit(deposit1.InitialAmount, deposit1.DurationInYears, deposit1.DurationInMonths);
+            DepositCalculator[] profit1 = deposit1.CalculateDepositProfit(deposit1.InitialAmount, deposit1.DurationInYears, deposit1.DurationInMonths);
 
             //виведення результату
             DisplayDepositProfit(profit1);
 
 
-            static void DisplayDepositProfit(Deposit[] profit)
+            static void DisplayDepositProfit(DepositCalculator[] profit)
             {
                 Console.WriteLine($"{"№", -10} {"Month", -10} {"Year", -10} {"Profit", -10} {"DepositSum", -10}");
                 Console.WriteLine(new string ('-', 50));
