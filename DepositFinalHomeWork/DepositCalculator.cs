@@ -29,12 +29,11 @@ namespace DepositFinalHomeWork
         public int DurationInYears
         {
             get
-            { return durationInYears; }
-            set
-            { durationInYears = DurationInMonths / 12; }
+            { return DurationInMonths / 12; } //це computed властивість. Вона не зберігає значення, а обчислює його на основі DurationInMonths щоразу,
+                                              //коли до неї звертаються. Це дозволяє завжди отримувати актуальне значення тривалості в роках, навіть
+                                              //якщо DurationInMonths змінюється.
+                                              //Для computed властивісті Сеттер  не потрібен
         }
-
-
 
         public DepositCalculator[] CalculateDepositProfit(double depositSum, int years, int month)
         {
