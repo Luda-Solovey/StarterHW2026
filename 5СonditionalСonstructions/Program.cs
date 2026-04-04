@@ -3,8 +3,31 @@ using System.Text;
 
 namespace _5СonditionalСonstructions
 {
-    internal class Program
+    public class Program
     {
+        private static bool IsValueParsed(string normalizedValue, Type type, out object outValue)
+        {
+            bool result = false;
+
+            switch (type.Name)
+            {
+                case "decimal":
+                    result = decimal.TryParse(normalizedValue, CultureInfo.InvariantCulture, out decimal decimalValue);
+                    outValue = decimalValue;
+                    break;
+                case "float":
+                    result = float.TryParse(normalizedValue, CultureInfo.InvariantCulture, out float floatValue);
+                    outValue = floatValue;
+                    break;
+                default: 
+                    result = false;
+                    outValue = null;
+                    break;
+            }
+
+            return result;  
+        }         
+
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -33,29 +56,29 @@ namespace _5СonditionalСonstructions
             //while (isBad)
 
             decimal salary = 0;
-            float experience = 0;
-            string haveGoodFeedbacks = string.Empty;
-            bool isExpirienceParced = false;
-            bool isSalaryParced = false;
+            decimal experience = 0;
+            bool hasGoodFeedbacks = false;
+
+            bool isExpirienceParced;
+            bool isSalaryParced;
+            bool isResultParced;
+
             bool isWrongInput = false;
             bool isExitRequired = false;
+
 
             while (true)
             {
                 do
                 {
-                    isWrongInput = false;
-                    Console.WriteLine("Введіть стаж роботи або exit, якщо бажаєте вийти з програми");
-                    string? inputExperience = Console.ReadLine() ?? string.Empty;
-                    if (inputExperience.ToUpper() == "EXIT")
-                    {
-                        isExitRequired = true;
-                        break;
-                    }
-                    string normalizedExpirience = (inputExperience ?? string.Empty).Replace(',', '.');//замінюємо кому на крапку
-                    isExpirienceParced = float.TryParse(normalizedExpirience, CultureInfo.InvariantCulture, out experience);
+                   isWrongInput = false;
 
-                    if (!isExpirienceParced || experience < 0)
+                   experience = GetUserInputResult(
+                        "Введіть стаж роботи або exit, якщо бажаєте вийти з програми",
+                        out isResultParced,
+                        out isExitRequired) ?? 0;
+
+                    if (!isResultParced || experience < 0)
                     {
                         Console.WriteLine("Невалідне значення для стажу роботи.");
                         isWrongInput = true;
@@ -63,7 +86,7 @@ namespace _5СonditionalСonstructions
                 }
                 while (isWrongInput);
 
-                if (isExitRequired == true)
+                if (isExitRequired)
                 {
                     break;
                 }
@@ -71,21 +94,16 @@ namespace _5СonditionalСonstructions
                 do
                 {
                     isWrongInput = false;
-                    Console.WriteLine("Введіть вашу зарплату або exit, якщо бажаєте вийти з програми");
-                    string? inputSalary = Console.ReadLine();
-                    if (inputSalary == "exit")
-                    {
-                        isExitRequired = true;
-                        break;
-                    }
+                    salary = GetUserInputResult(
+                        "Введіть поточну заробітню плату",
+                        out isResultParced,
+                        out isExitRequired) ?? 0;
 
-                    string normalizedSalary = (inputSalary ?? string.Empty).Replace(',', '.');
-                    isSalaryParced = Decimal.TryParse(normalizedSalary, CultureInfo.InvariantCulture, out salary);
-                    if (!isSalaryParced || salary < 0)
+                    if (!isResultParced || salary < 0)
                     {
                         Console.WriteLine("Введене невалідне значення заробітньої плати.");
                         isWrongInput = true;
-                    }
+                    }               
                 }
                 while (isWrongInput);
 
@@ -97,20 +115,22 @@ namespace _5СonditionalСonstructions
 
                 do
                 {
+                    var answer = GetUserInputResult(
+                     "Ви маєте гарні відгуки? Введіть 1 якщо так чи 2 якщо Ні. Якщо бажаєте вийти з програми введіть exit",
+                     out isResultParced,
+                     out isExitRequired);
+              
                     isWrongInput = false;
-                    Console.WriteLine("Ви маєте гарні відгуки? Введіть Так чи Ні. Якщо бажаєте вийти з програми введіть exit");
-                    haveGoodFeedbacks = Console.ReadLine() ?? string.Empty;
-                    if (haveGoodFeedbacks.ToUpper() == "EXIT")
-                    {
-                        isExitRequired = true;
-                        break;
-                    }
-
-                    if (!(haveGoodFeedbacks.ToUpper() == "ТАК" || haveGoodFeedbacks.ToUpper() == "НІ"))
+                   
+                    if (!(answer == 1 || answer == 2))
                     {
                         Console.WriteLine("Ви ввели неправильне значення.");
                         isWrongInput = true;
                     }
+                    else 
+                    {
+                        hasGoodFeedbacks = (answer == 1);
+                    }
                 }
                 while (isWrongInput);
 
@@ -120,7 +140,9 @@ namespace _5СonditionalСonstructions
                     break;
                 }
 
-                if ((haveGoodFeedbacks == "ТАК" && salary < 10_000m) || experience > 10f || salary < 5000m)
+                if ((hasGoodFeedbacks && salary < 10_000m) || 
+                    experience > 10m || 
+                    salary < 5000m)
                 {
                     salary += salary * 0.2m;
                     Console.WriteLine($"Вітаємо! Ваша заробітня плата була збільшена на 20%. Нова заробітня плата - {salary:##.##}");
@@ -132,7 +154,26 @@ namespace _5СonditionalСonstructions
                 }
 
             }
-            while (isWrongInput) ;
+            while (isWrongInput);
+        }
+
+        private static decimal? GetUserInputResult(string requestMessage, out bool isResultParced, out bool isExitRequired)
+        {
+            isExitRequired = false;
+            isResultParced = false;
+
+            Console.WriteLine(requestMessage); 
+            string response = Console.ReadLine() ?? string.Empty; 
+            if (response.ToUpper() == "EXIT") 
+            {
+                isExitRequired = true;
+                return null;
+            }
+            string normalizedInput = (response ?? string.Empty).Replace(',', '.');
+
+            isResultParced = decimal.TryParse(normalizedInput, out decimal res);        
+
+            return res;
         }
     }
 }
