@@ -20,6 +20,8 @@ namespace DepositFinalHomeWork
 
         public double ProfitForMonth { get; set; }
 
+        public double ProfitForPeriod { get; set; }
+
         public int DurationInMonths { get; set; } = 4;
 
         public string BillingMonth {  get; set; } = string.Empty;
@@ -38,20 +40,24 @@ namespace DepositFinalHomeWork
         public DepositCalculator[] CalculateDepositProfit(double depositSum, int years, int month)
         {
             var depositResults = new DepositCalculator[month];
+            double profitForPeriod = 0;
 
             for (int i = 0; i < month; i++)
             {
                 string monthName = OpenDate.AddMonths(i + 1).ToString("MMMM"); // Назва місяця
-                double profit = depositSum * depositRate /100/ 12; // прибуток за місяц
-                double total = depositSum + profit; // нова загальна сума
+                double profitForMonth = depositSum * depositRate /100/ 12; // прибуток за місяц
+                double total = depositSum + profitForMonth; // нова загальна сума
+                //double profitForPeriod = total - InitialAmount; // прибуток за весь період
+                profitForPeriod = profitForPeriod + profitForMonth; // прибуток за весь період
 
                 depositResults[i] = new DepositCalculator
                 {
                     NumberOfMonths = i + 1,
                     BillingMonth = monthName,
                     Year = OpenDate.Year,
-                    ProfitForMonth = Math.Round(profit, 2),
-                    BillingDepositSum = Math.Round(total, 2)
+                    ProfitForMonth = Math.Round(profitForMonth, 2),
+                    BillingDepositSum = Math.Round(total, 2),
+                    ProfitForPeriod = Math.Round(profitForPeriod, 2)
                 };
 
                 depositSum = total;

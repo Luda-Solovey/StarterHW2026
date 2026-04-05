@@ -63,7 +63,7 @@ namespace DepositFinalHomeWork
             if (isDurationParsed && depositDurationInMonths >= 4)
             {
                 deposit1.DurationInMonths = depositDurationInMonths;
-                deposit1.DurationInYears = depositDurationInMonths;
+                //deposit1.DurationInYears = depositDurationInMonths;
             }
             else
             {
@@ -81,12 +81,12 @@ namespace DepositFinalHomeWork
 
             static void DisplayDepositProfit(DepositCalculator[] profit)
             {
-                Console.WriteLine($"{"№", -10} {"Month", -10} {"Year", -10} {"Profit", -10} {"DepositSum", -10}");
-                Console.WriteLine(new string ('-', 50));
+                Console.WriteLine($"{"№", -10} {"Month", -10} {"Year", -10} {"ProfitForMonth", -10} {"ProfitForPeriod", -10} {"DepositSum", -10}");
+                Console.WriteLine(new string ('-', 60));
                 foreach (var item in profit)
                 {
-                    Console.WriteLine($"{item.NumberOfMonths} {item.BillingMonth} {item.Year} {item.ProfitForMonth} {item.BillingDepositSum}");
-                    Console.WriteLine(new string('-', 50));
+                    Console.WriteLine($"{item.NumberOfMonths, -5} {item.BillingMonth, -10} {item.Year,-10} {item.ProfitForMonth, -10} {item.ProfitForPeriod, -10} {item.BillingDepositSum,-10}");
+                    Console.WriteLine(new string('-', 60));
                 }
             }
         }
