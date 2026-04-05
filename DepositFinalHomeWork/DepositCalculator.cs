@@ -6,11 +6,7 @@ namespace DepositFinalHomeWork
 {
     public class DepositCalculator
     {
-        private int durationInYears;
-
         const int depositRate = 12;
-
-        const int increaseForMonth = 1;
 
         public int NumberOfMonths { get; set; }
 
@@ -26,8 +22,9 @@ namespace DepositFinalHomeWork
 
         public string BillingMonth {  get; set; } = string.Empty;
 
-        public double BillingDepositSum { get; set; }   
+        public double BillingDepositSum { get; set; }
 
+        //залишила цю властивість тільки як приклад computed властивості. в коді не використовується
         public int DurationInYears
         {
             get
@@ -37,7 +34,7 @@ namespace DepositFinalHomeWork
                                               //Для computed властивісті Сеттер  не потрібен
         }
 
-        public DepositCalculator[] CalculateDepositProfit(double depositSum, int years, int month)
+        public DepositCalculator[] CalculateDepositProfit(double depositSum, int month)
         {
             var depositResults = new DepositCalculator[month];
             double profitForPeriod = 0;

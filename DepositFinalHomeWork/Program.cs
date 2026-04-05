@@ -73,7 +73,7 @@ namespace DepositFinalHomeWork
 
 
             //розрахунок прибутку від депозиту
-            DepositCalculator[] profit1 = deposit1.CalculateDepositProfit(deposit1.InitialAmount, deposit1.DurationInYears, deposit1.DurationInMonths);
+            DepositCalculator[] profit1 = deposit1.CalculateDepositProfit(deposit1.InitialAmount, deposit1.DurationInMonths);
 
             //виведення результату
             DisplayDepositProfit(profit1);
@@ -81,7 +81,7 @@ namespace DepositFinalHomeWork
 
             static void DisplayDepositProfit(DepositCalculator[] profit)
             {
-                Console.WriteLine($"{"№", -10} {"Month", -10} {"Year", -10} {"ProfitForMonth", -10} {"ProfitForPeriod", -10} {"DepositSum", -10}");
+                Console.WriteLine($"{"№", -5} {"Month", -10} {"Year", -10} {"ProfitForMonth", -10} {"ProfitForPeriod", -10} {"DepositSum", -10}");
                 Console.WriteLine(new string ('-', 60));
                 foreach (var item in profit)
                 {
