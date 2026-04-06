@@ -44,7 +44,6 @@ namespace DepositFinalHomeWork
                 string monthName = OpenDate.AddMonths(i + 1).ToString("MMMM"); // Назва місяця
                 double profitForMonth = depositSum * depositRate /100/ 12; // прибуток за місяц
                 double total = depositSum + profitForMonth; // нова загальна сума
-                //double profitForPeriod = total - InitialAmount; // прибуток за весь період
                 profitForPeriod = profitForPeriod + profitForMonth; // прибуток за весь період
 
                 depositResults[i] = new DepositCalculator
