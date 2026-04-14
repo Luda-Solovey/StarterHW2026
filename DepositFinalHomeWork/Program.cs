@@ -9,7 +9,7 @@ namespace DepositFinalHomeWork
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
 
-            DepositCalculator deposit1 = new DepositCalculator();
+            DepositData deposit1 = new DepositData();
 
             //введення суми депозиту
             Console.WriteLine("Введіть суму депозита");
@@ -58,7 +58,7 @@ namespace DepositFinalHomeWork
 
             string normalizedDurationInput = inputDepositDurationInMonths.Replace(',', '.');
 
-            bool isDurationParsed = int.TryParse(normalizedDurationInput, out int depositDurationInMonths);
+            bool isDurationParsed = byte.TryParse(normalizedDurationInput, out byte depositDurationInMonths);
 
             if (isDurationParsed && depositDurationInMonths >= 4)
             {
@@ -73,13 +73,15 @@ namespace DepositFinalHomeWork
 
 
             //розрахунок прибутку від депозиту
-            DepositCalculator[] profit1 = deposit1.CalculateDepositProfit(deposit1.InitialAmount, deposit1.DurationInMonths);
+            DepositCalculator depositCalculator = new DepositCalculator();
+            DepositData[] profit1 = depositCalculator.GetDepositCalculationTable(deposit1);
+
 
             //виведення результату
-            DisplayDepositProfit(profit1);
+            DisplayCalculationTable(profit1);
 
 
-            static void DisplayDepositProfit(DepositCalculator[] profit)
+            static void DisplayCalculationTable(DepositData[] profit)
             {
                 Console.WriteLine($"{"№", -5} {"Month", -10} {"Year", -10} {"ProfitForMonth", -10} {"ProfitForPeriod", -10} {"DepositSum", -10}");
                 Console.WriteLine(new string ('-', 60));
