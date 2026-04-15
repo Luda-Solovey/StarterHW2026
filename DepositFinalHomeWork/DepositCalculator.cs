@@ -6,7 +6,7 @@ namespace DepositFinalHomeWork
 {
     public class DepositCalculator
     {
-        const int DepositRate = 12;
+        private const int DepositRate = 12;
 
         public DepositData[] GetDepositCalculationTable(DepositData clientsWishes)
         {
