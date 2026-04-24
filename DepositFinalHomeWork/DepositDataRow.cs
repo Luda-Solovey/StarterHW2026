@@ -7,7 +7,7 @@ namespace DepositFinalHomeWork
     public class DepositDataRow
     {
         public int NumberOfMonthsByDigit { get; set; }
-        public byte Year { get; set; }
+        public short Year { get; set; }
         public double CurrentDepositAmount { get; set; }
         public double ProfitForMonth { get; set; }
         public double ProfitForPeriod { get; set; }

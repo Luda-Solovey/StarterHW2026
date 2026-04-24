@@ -39,7 +39,7 @@ namespace DepositFinalHomeWork
                 {
                     NumberOfMonthsByDigit = i + 1,
                     CurrentDepositMonth = currentDepositMonthByWords,
-                    Year = (byte)clientsWishes.OpenDate.Year,
+                    Year = (short)clientsWishes.OpenDate.Year,
                     ProfitForMonth = Math.Round(profitForMonth, 2),
                     TotalDepositSum = Math.Round(profitPerEachMonth, 2),
                     ProfitForPeriod = Math.Round(profitForPeriod, 2)
