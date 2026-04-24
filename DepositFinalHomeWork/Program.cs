@@ -79,16 +79,16 @@ namespace DepositFinalHomeWork
 
 
             //виведення результату
-            DisplayCalculationTable(profit1);
+            DisplayDepositCalculationsInTableFormat(profit1);
 
 
-            static void DisplayCalculationTable(DepositDataRow[] profit)
+            static void DisplayDepositCalculationsInTableFormat(DepositDataRow[] profit)
             {
                 Console.WriteLine($"{"№", -5} {"Month", -10} {"Year", -10} {"ProfitForMonth", -10} {"ProfitForPeriod", -17} {"TotalDepositSum", -10}");
                 Console.WriteLine(new string ('-', 70));
                 foreach (var item in profit)
                 {
-                    Console.WriteLine($"{item.NumberOfMonthsByDigit, -5} {item.CurrentDepositMonth, -10} {item.Year,-10} {item.ProfitForMonth, -15} {item.ProfitForPeriod, -17} {item.TotalDepositSum,-10}");
+                    Console.WriteLine($"{item.NumberOfMonthsByDigit, -5} {item.CurrentDepositMonthByWords, -10} {item.Year,-10} {item.ProfitForMonth, -15} {item.ProfitForPeriod, -17} {item.TotalDepositSum,-10}");
                     Console.WriteLine(new string('-', 70));
                 }
             }

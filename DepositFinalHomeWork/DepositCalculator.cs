@@ -38,7 +38,7 @@ namespace DepositFinalHomeWork
                 depositResults[i] = new DepositDataRow
                 {
                     NumberOfMonthsByDigit = i + 1,
-                    CurrentDepositMonth = currentDepositMonthByWords,
+                    CurrentDepositMonthByWords = currentDepositMonthByWords,
                     Year = (short)clientsWishes.OpenDate.Year,
                     ProfitForMonth = Math.Round(profitForMonth, 2),
                     TotalDepositSum = Math.Round(profitPerEachMonth, 2),
