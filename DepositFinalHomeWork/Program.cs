@@ -9,7 +9,8 @@ namespace DepositFinalHomeWork
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
 
-            DepositData deposit1 = new DepositData();
+            //DepositDataRow deposit1 = new DepositDataRow();
+            DepositCalculator deposit1 = new DepositCalculator();
 
             //введення суми депозиту
             Console.WriteLine("Введіть суму депозита");
@@ -74,21 +75,21 @@ namespace DepositFinalHomeWork
 
             //розрахунок прибутку від депозиту
             DepositCalculator depositCalculator = new DepositCalculator();
-            DepositData[] profit1 = depositCalculator.GetDepositCalculationTable(deposit1);
+            DepositDataRow[] profit1 = depositCalculator.GetDepositCalculationTable(deposit1);
 
 
             //виведення результату
             DisplayCalculationTable(profit1);
 
 
-            static void DisplayCalculationTable(DepositData[] profit)
+            static void DisplayCalculationTable(DepositDataRow[] profit)
             {
-                Console.WriteLine($"{"№", -5} {"Month", -10} {"Year", -10} {"ProfitForMonth", -10} {"ProfitForPeriod", -10} {"DepositSum", -10}");
-                Console.WriteLine(new string ('-', 60));
+                Console.WriteLine($"{"№", -5} {"Month", -10} {"Year", -10} {"ProfitForMonth", -10} {"ProfitForPeriod", -17} {"TotalDepositSum", -10}");
+                Console.WriteLine(new string ('-', 70));
                 foreach (var item in profit)
                 {
-                    Console.WriteLine($"{item.NumberOfMonths, -5} {item.BillingMonth, -10} {item.Year,-10} {item.ProfitForMonth, -10} {item.ProfitForPeriod, -10} {item.BillingDepositSum,-10}");
-                    Console.WriteLine(new string('-', 60));
+                    Console.WriteLine($"{item.NumberOfMonthsByDigit, -5} {item.CurrentDepositMonth, -10} {item.Year,-10} {item.ProfitForMonth, -15} {item.ProfitForPeriod, -17} {item.TotalDepositSum,-10}");
+                    Console.WriteLine(new string('-', 70));
                 }
             }
         }
