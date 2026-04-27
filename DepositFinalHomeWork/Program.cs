@@ -9,7 +9,6 @@ namespace DepositFinalHomeWork
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
 
-            //DepositDataRow deposit1 = new DepositDataRow();
             DepositCalculator deposit1 = new DepositCalculator();
 
             //введення суми депозиту
@@ -30,7 +29,6 @@ namespace DepositFinalHomeWork
                 Console.WriteLine("Некоректне введення суми депозиту. Будь ласка, введіть додатне число.");
                 return;
             }
-
 
             //дата відкриття депозиту
             Console.WriteLine("Введіть дату відкриття депозиту у форматі ДД.ММ.РРРР");
