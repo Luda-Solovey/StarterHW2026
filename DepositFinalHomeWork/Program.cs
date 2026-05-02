@@ -9,7 +9,10 @@ namespace DepositFinalHomeWork
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
 
-            DepositCalculator deposit1 = new DepositCalculator();
+            var initialAmount = 0.0;
+            var openDate = DateOnly.FromDateTime(DateTime.Today);
+            byte durationInMonths = 4;
+            byte depositRate = 0;
 
             //введення суми депозиту
             Console.WriteLine("Введіть суму депозита");
@@ -22,7 +25,7 @@ namespace DepositFinalHomeWork
 
             if (isInputParsed && depositSum > 0)
             {
-                deposit1.InitialAmount = depositSum;
+                initialAmount = depositSum;
             }
             else
             {
@@ -41,7 +44,7 @@ namespace DepositFinalHomeWork
 
             if (isDateParsed)
             {
-                deposit1.OpenDate = depositOpenDate;
+                openDate = depositOpenDate;
             }
             else
             {
@@ -61,8 +64,7 @@ namespace DepositFinalHomeWork
 
             if (isDurationParsed && depositDurationInMonths >= 4)
             {
-                deposit1.DurationInMonths = depositDurationInMonths;
-                //deposit1.DurationInYears = depositDurationInMonths;
+                durationInMonths = depositDurationInMonths;
             }
             else
             {
@@ -70,7 +72,13 @@ namespace DepositFinalHomeWork
                 return;
             }
 
-
+            DepositData deposit1 = new DepositData
+            (
+                InitialAmount: initialAmount,
+                OpenDate: openDate,
+                DurationInMonths: durationInMonths
+            );
+                
             //розрахунок прибутку від депозиту
             DepositCalculator depositCalculator = new DepositCalculator();
             DepositDataRow[] profit1 = depositCalculator.GetDepositCalculationTable(deposit1);
