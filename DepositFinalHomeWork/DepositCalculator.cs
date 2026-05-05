@@ -3,25 +3,25 @@ namespace DepositFinalHomeWork
 {
     public class DepositCalculator
     {
-        public DepositDataRow[] GetDepositCalculationTable(DepositData clientsWishes)
+        public DepositDataRow[] GetDepositCalculationTable(DepositData clientsRequest)
         {
-            DepositDataRow[] depositResults = new DepositDataRow[clientsWishes.DurationInMonths];
+            DepositDataRow[] depositResults = new DepositDataRow[clientsRequest.DurationInMonths];
             double profitForPeriod = 0;
 
-            var currentDepositAmount = clientsWishes.InitialAmount; // локальна змінна для зберігання поточної суми депозиту, яка буде оновлюватися в циклі
+            var currentDepositAmount = clientsRequest.InitialAmount; // локальна змінна для зберігання поточної суми депозиту, яка буде оновлюватися в циклі
 
-            for (int i = 0; i < clientsWishes.DurationInMonths; i++)
+            for (int i = 0; i < clientsRequest.DurationInMonths; i++)
             {
-                string currentDepositMonthByWords = clientsWishes.OpenDate.AddMonths(i + 1).ToString("MMMM"); // Назва місяця
-                string currentDepositYearByWords = clientsWishes.OpenDate.AddMonths(i + 1).ToString("yyyy"); // Рік
-                double profitForMonth = currentDepositAmount * clientsWishes.DepositRate/100/12; // прибуток за місяц
+                string currentDepositMonthByWords = clientsRequest.OpenDate.AddMonths(i + 1).ToString("MMMM"); // Назва місяця
+                string currentDepositYearByWords = clientsRequest.OpenDate.AddMonths(i + 1).ToString("yyyy"); // Рік
+                double profitForMonth = currentDepositAmount * clientsRequest.DepositRate / 100 / 12; // прибуток за місяц
                 double profitPerEachMonth = currentDepositAmount + profitForMonth; // нова загальна сума
                 profitForPeriod = profitForPeriod + profitForMonth; // прибуток за весь період
 
                 depositResults[i] = new DepositDataRow
                 (
-                    NumberOfMonthsByDigit: i + 1,
-                    CurrentDepositMonthByWords: currentDepositMonthByWords,
+                    NumberOfMonth: i + 1,
+                    CurrentDepositMonth: currentDepositMonthByWords,
                     Year: currentDepositYearByWords,   
                     CurrentDepositAmount: currentDepositAmount,
                     ProfitForMonth: Math.Round(profitForMonth, 2),
@@ -31,6 +31,7 @@ namespace DepositFinalHomeWork
 
                 currentDepositAmount = profitPerEachMonth;
             }
+
             return depositResults;
         }
 

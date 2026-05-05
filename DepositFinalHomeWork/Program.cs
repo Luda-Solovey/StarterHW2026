@@ -72,7 +72,7 @@ namespace DepositFinalHomeWork
                 return;
             }
 
-            DepositData deposit1 = new DepositData
+            var currentDeposit = new DepositData
             (
                 InitialAmount: initialAmount,
                 OpenDate: openDate,
@@ -80,21 +80,22 @@ namespace DepositFinalHomeWork
             );
                 
             //розрахунок прибутку від депозиту
-            DepositCalculator depositCalculator = new DepositCalculator();
-            DepositDataRow[] profit1 = depositCalculator.GetDepositCalculationTable(deposit1);
+            var depositCalculator = new DepositCalculator();
+            var fullInformationAboutDeposit = depositCalculator.GetDepositCalculationTable(currentDeposit); //full information about the deposit
 
 
             //виведення результату
-            DisplayDepositCalculationsInTableFormat(profit1);
+            DisplayDepositCalculationsInTableFormat(fullInformationAboutDeposit);
 
 
             static void DisplayDepositCalculationsInTableFormat(DepositDataRow[] profit)
             {
                 Console.WriteLine($"{"№", -5} {"Month", -10} {"Year", -10} {"ProfitForMonth", -10} {"ProfitForPeriod", -17} {"TotalDepositSum", -10}");
                 Console.WriteLine(new string ('-', 70));
+
                 foreach (var item in profit)
                 {
-                    Console.WriteLine($"{item.NumberOfMonthsByDigit, -5} {item.CurrentDepositMonthByWords, -10} {item.Year,-10} {item.ProfitForMonth, -15} {item.ProfitForPeriod, -17} {item.TotalDepositSum,-10}");
+                    Console.WriteLine($"{item.NumberOfMonth, -5} {item.CurrentDepositMonth, -10} {item.Year,-10} {item.ProfitForMonth, -15} {item.ProfitForPeriod, -17} {item.TotalDepositSum,-10}");
                     Console.WriteLine(new string('-', 70));
                 }
             }
