@@ -9,7 +9,10 @@ namespace DepositFinalHomeWork
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
 
-            Deposit deposit1 = new Deposit();
+            var initialAmount = 0.0;
+            var openDate = DateOnly.FromDateTime(DateTime.Today);
+            byte durationInMonths = 4;
+            byte depositRate = 0;
 
             //введення суми депозиту
             Console.WriteLine("Введіть суму депозита");
@@ -22,14 +25,13 @@ namespace DepositFinalHomeWork
 
             if (isInputParsed && depositSum > 0)
             {
-                deposit1.DepositSum = depositSum;
+                initialAmount = depositSum;
             }
             else
             {
                 Console.WriteLine("Некоректне введення суми депозиту. Будь ласка, введіть додатне число.");
                 return;
             }
-
 
             //дата відкриття депозиту
             Console.WriteLine("Введіть дату відкриття депозиту у форматі ДД.ММ.РРРР");
@@ -42,7 +44,7 @@ namespace DepositFinalHomeWork
 
             if (isDateParsed)
             {
-                deposit1.DepositOpenDate = depositOpenDate;
+                openDate = depositOpenDate;
             }
             else
             {
@@ -58,12 +60,11 @@ namespace DepositFinalHomeWork
 
             string normalizedDurationInput = inputDepositDurationInMonths.Replace(',', '.');
 
-            bool isDurationParsed = int.TryParse(normalizedDurationInput, out int depositDurationInMonths);
+            bool isDurationParsed = byte.TryParse(normalizedDurationInput, out byte depositDurationInMonths);
 
             if (isDurationParsed && depositDurationInMonths >= 4)
             {
-                deposit1.DurationInMonths = depositDurationInMonths;
-                deposit1.DurationInYears = depositDurationInMonths;
+                durationInMonths = depositDurationInMonths;
             }
             else
             {
@@ -71,11 +72,32 @@ namespace DepositFinalHomeWork
                 return;
             }
 
-            double profit1 = deposit1.CalculateDepositProfit(deposit1.DepositSum, deposit1.DurationInYears);
+            var currentDeposit = new DepositRequestData
+            (
+                InitialAmount: initialAmount,
+                OpenDate: openDate,
+                DurationInMonths: durationInMonths
+            );
+                
+            //розрахунок прибутку від депозиту
+            var depositCalculator = new DepositCalculator();
+            var fullInformationAboutDeposit = depositCalculator.GetDepositCalculationTable(currentDeposit); //full information about the deposit
 
-            Console.WriteLine($"Розмір прибутку від депозиту - {profit1}");
 
+            DisplayDepositCalculationsInTableFormat(fullInformationAboutDeposit);
+
+
+            static void DisplayDepositCalculationsInTableFormat(DepositDataRow[] profit)
+            {
+                Console.WriteLine($"{"№", -5} {"Month", -10} {"Year", -10} {"ProfitForMonth", -10} {"ProfitForPeriod", -17} {"TotalDepositSum", -10}");
+                Console.WriteLine(new string ('-', 70));
+
+                foreach (var item in profit)
+                {
+                    Console.WriteLine($"{item.NumberOfMonth, -5} {item.CurrentDepositMonth, -10} {item.Year,-10} {item.ProfitForMonth, -15} {item.ProfitForPeriod, -17} {item.TotalDepositSum,-10}");
+                    Console.WriteLine(new string('-', 70));
+                }
+            }
         }
-
     }
 }
