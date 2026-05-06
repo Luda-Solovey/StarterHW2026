@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DepositFinalHomeWork
 {
-    public record DepositData
+    public record DepositRequestData
     (
         double InitialAmount,
         DateOnly OpenDate,

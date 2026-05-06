@@ -72,7 +72,7 @@ namespace DepositFinalHomeWork
                 return;
             }
 
-            var currentDeposit = new DepositData
+            var currentDeposit = new DepositRequestData
             (
                 InitialAmount: initialAmount,
                 OpenDate: openDate,
@@ -84,7 +84,6 @@ namespace DepositFinalHomeWork
             var fullInformationAboutDeposit = depositCalculator.GetDepositCalculationTable(currentDeposit); //full information about the deposit
 
 
-            //виведення результату
             DisplayDepositCalculationsInTableFormat(fullInformationAboutDeposit);
 
 

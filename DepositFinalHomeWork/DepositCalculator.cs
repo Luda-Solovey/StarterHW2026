@@ -3,7 +3,7 @@ namespace DepositFinalHomeWork
 {
     public class DepositCalculator
     {
-        public DepositDataRow[] GetDepositCalculationTable(DepositData clientsRequest)
+        public DepositDataRow[] GetDepositCalculationTable(DepositRequestData clientsRequest)
         {
             DepositDataRow[] depositResults = new DepositDataRow[clientsRequest.DurationInMonths];
             double profitForPeriod = 0;
